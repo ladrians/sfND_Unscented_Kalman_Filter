@@ -41,6 +41,12 @@ class UKF {
    */
   void UpdateRadar(MeasurementPackage meas_package);
 
+  // ADDED
+  /**
+   * Normalize the angle as parameter
+   * @param pValue is related to the current angle
+   */
+  void NormalizeAngle(double *pValue);
 
   // initially set to false, set to true in first call of ProcessMeasurement
   bool is_initialized_;
@@ -95,6 +101,21 @@ class UKF {
 
   // Sigma point spreading parameter
   double lambda_;
+
+  ///* set measurement dimension, radar can measure r, phi, and r_dot
+  int n_z;
+
+  ///* Augmentation size
+  int aug_size;
+  
+  ///* measurement matrix
+  Eigen::MatrixXd H_;
+  ///* measurement covariance matrix
+  Eigen::MatrixXd R_lidar;
+  Eigen::MatrixXd R_radar;
+  ///* NIS for radar and lidar
+  double NIS_radar_;
+  double NIS_laser_;
 };
 
 #endif  // UKF_H
