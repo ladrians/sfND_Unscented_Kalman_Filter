@@ -78,4 +78,4 @@ When using only `radar` measurements is when it got the worst values, fluctuatin
 
  * [Original Repository](https://github.com/udacity/SFND_Unscented_Kalman_Filter)
  * [Project Rubric](https://review.udacity.com/#!/rubrics/2551/view)
- * [My UKF implementation in Self-Driving Car Nanodegree Program](https://github.com/ladrians/CarND-Unscented-Kalman-Filter-P7/)
+ * [My UKF implementation in the carND Program](https://github.com/ladrians/CarND-Unscented-Kalman-Filter-P7/)
