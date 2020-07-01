@@ -116,6 +116,8 @@ class UKF {
   ///* NIS for radar and lidar
   double NIS_radar_;
   double NIS_laser_;
+  // Debug
+  bool debug_ = false;
 };
 
 #endif  // UKF_H

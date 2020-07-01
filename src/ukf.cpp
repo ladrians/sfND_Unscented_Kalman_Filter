@@ -1,5 +1,6 @@
 #include "ukf.h"
 #include "Eigen/Dense"
+#include <iostream>
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
@@ -88,6 +89,15 @@ UKF::UKF() {
   R_radar << std_radr_ * std_radr_, 0, 0,
           0, std_radphi_ * std_radphi_, 0,
           0, 0, std_radrd_ * std_radrd_;
+
+  // Tweak default parameters
+  std_yawdd_ = 0.9;
+  std_a_ = 1.;
+
+  // Debug and testing
+  debug_ = false;
+  //use_laser_ = false;
+  //use_radar_ = false;
 }
 
 UKF::~UKF() {}
@@ -150,10 +160,12 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
     UpdateLidar(meas_package);
   }
 
-  // print the output
-  /*std::cout << "x_ = " << x_ << std::endl;
-  std::cout << "P_ = " << P_ << std::endl;
-  std::cout << "NIS_radar_ = " << NIS_radar_ << " NIS_laser_ = " << NIS_laser_ << std::endl;*/
+  if (debug_)
+  {
+    std::cout << "x_ = " << x_ << std::endl;
+    std::cout << "P_ = " << P_ << std::endl;
+    std::cout << "NIS_radar_ = " << NIS_radar_ << " NIS_laser_ = " << NIS_laser_ << std::endl;
+  }
 }
 
 void UKF::Prediction(double delta_t) {
